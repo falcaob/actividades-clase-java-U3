@@ -143,19 +143,31 @@ public class Automovil {
 		System.out.println("Color: " + this.getColor());
 		System.out.println("Antigüedad: " + this.getNAnyos() + " años");
 		System.out.println("Velocidad actual: " + this.getVelocidad() + " km/h");
-		System.out.println("Tipo de combustible: " + this.getTipoCombustible() + " km/h");
+		System.out.println("Tipo de combustible: " + this.getTipoCombustible());
 	}
 
 	// Método que arranca un coche
 	// Lo pone a 10 km/h
 	public void arrancar() {
 		// this.velocidad = 10.0;
-		this.setVelocidad(10);
+		//un coche puede arrancar siempre que su velocidad sea km/h
+		//arrancar un coche significa ponerlo akm/h
+		if(this.getVelocidad() > 0)
+			System.out.println("No se puede volver a arrancar el coche");
+		else this.setVelocidad(10);
 	}
 
 	// Método que acelara un automovil
 	// un número determinado de km/h que le indicamos como argumento
+	//un coche que no esté arrancado no puede ser alecerado
 	public void acelerar(double aceleracion) {
+		
+		if(this.getVelocidad() > 0) {
+			//velocidad actual más aceleración
+			this.setVelocidad(this.getVelocidad() + aceleracion);
+		} else {
+			System.out.println("No se puede acelerar un coche que no esté arrancado");
+		}
 
 		this.setVelocidad(this.getVelocidad() + aceleracion);
 
@@ -221,6 +233,14 @@ public class Automovil {
 		 * nuevoAutomovil.setMatricula(sc.next());
 		 */
 		
+	}
+	
+	
+	public static boolean existeAutomovil(Automovil miAutomovil) {
+		boolean existe = false;
+		if (miAutomovil != null) existe = true;
+		else System.out.println("Debes crear primero un automovil");
+		return existe;
 	}
 
 	// métodos que nos permite asignar un nuevo valor a la gasolina

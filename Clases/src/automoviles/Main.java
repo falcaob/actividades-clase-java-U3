@@ -5,29 +5,60 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-
+		
+		Automovil miAutomovil = null; //creamos el automovil
 		Scanner sc = new Scanner(System.in);
 		int opcion;
 
 		do {
 			InterfazUsuario.imprimirMenu();
-			System.out.println("\nIndica una opción (1-9):");
+			System.out.println("\nIndica una opción (1-10):");
 			opcion = sc.nextInt();
 
 			switch (opcion) {
 
 			case 1: //Crear coche
-				Automovil.crearAutomovil();
+				
+				//asigno la creacion
+				miAutomovil = Automovil.crearAutomovil();
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 2: ////Mostrar datos
 				//Necesito un objeto coche desde donde llamar al método de instancia en la clase Automovil
 				
+				/*
+				//comprobamos si se ha creado el automovil
+				//esto puede hacerse en un método para no repetirlo en cada caso
+				if(miAutomovil == null) {
+					System.out.println("Debes crear primero un Automovil");
+				} else {
+					miAutomovil.mostrarDatos();
+				}
+				*/
+				
+				if(Automovil.existeAutomovil(miAutomovil)) 
+					miAutomovil.mostrarDatos();
+				InterfazUsuario.esperaIntro(sc);
+				break;
 				
 			case 3: //Arranca coche
+				if(Automovil.existeAutomovil(miAutomovil)) 
+					miAutomovil.arrancar();
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 4: //Acelerar
+				if(Automovil.existeAutomovil(miAutomovil)) {
+					double aceleracion;
+					
+					System.out.println("¿Cuánto quieres acelerar?");
+					
+					if((aceleracion = sc.nextDouble()) >= 50) {
+						System.out.println("Dejate de ir!");
+					}else {
+						miAutomovil.acelerar(aceleracion);
+					}
+					miAutomovil.acelerar(opcion);
+				} 
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 5: //Frenar
