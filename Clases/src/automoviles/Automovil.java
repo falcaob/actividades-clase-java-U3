@@ -14,8 +14,8 @@ public class Automovil {
 
 	// no dependen del objeto coche
 	// STATIC ES ALGO COMÚN EN TODA LA CLASE
-	private static double precioGasolina; // atributo estático común a todos los coches
-	private static double precioGasoil; // atributo estático común a todos los coches
+	private static double precioGasolina = 1.60; // atributo estático común a todos los coches
+	private static double precioGasoil = 1.30; // atributo estático común a todos los coches
 
 	// CONSTRUCTORES DE LA CLASE************************
 	// Métodos que nos permiten construir objetos de la clase
@@ -108,7 +108,7 @@ public class Automovil {
 
 		// Si tipoCombustible no es "Gasolina" o "Diesel" entonces no es combustible
 		// correcto
-		if (tipoCombustible.equalsIgnoreCase("Gasolina") || tipoCombustible.equalsIgnoreCase("Diesel")) {
+		if (tipoCombustible.equalsIgnoreCase("Gasolina") || tipoCombustible.equalsIgnoreCase("Gasoil")) {
 			this.tipoCombustible = tipoCombustible;
 		} else {
 			System.out.println("No es correcto");
@@ -150,20 +150,21 @@ public class Automovil {
 	// Lo pone a 10 km/h
 	public void arrancar() {
 		// this.velocidad = 10.0;
-		//un coche puede arrancar siempre que su velocidad sea km/h
-		//arrancar un coche significa ponerlo akm/h
-		if(this.getVelocidad() > 0)
+		// un coche puede arrancar siempre que su velocidad sea km/h
+		// arrancar un coche significa ponerlo akm/h
+		if (this.getVelocidad() > 0)
 			System.out.println("No se puede volver a arrancar el coche");
-		else this.setVelocidad(10);
+		else
+			this.setVelocidad(10);
 	}
 
 	// Método que acelara un automovil
 	// un número determinado de km/h que le indicamos como argumento
-	//un coche que no esté arrancado no puede ser alecerado
+	// un coche que no esté arrancado no puede ser alecerado
 	public void acelerar(double aceleracion) {
-		
-		if(this.getVelocidad() > 0) {
-			//velocidad actual más aceleración
+
+		if (this.getVelocidad() > 0) {
+			// velocidad actual más aceleración
 			this.setVelocidad(this.getVelocidad() + aceleracion);
 		} else {
 			System.out.println("No se puede acelerar un coche que no esté arrancado");
@@ -177,18 +178,49 @@ public class Automovil {
 	// Método que frena un automóvil
 	// un número determinado de km/h que le indicamos como argumento
 	public void frenar(double frenado) {
-		
-		/*
-		if(this.getVelocidad() > 0) {
-			//velocidad actual menos el frenado
-			
+
+		// si la velocidad es mayor que 0 puedo frenar
+		if (this.getVelocidad() > 0) {
+
+			// controlar que el frando no es mayor que velocidad actual
+			if (frenado > getVelocidad()) {
+				// si es mayor que se ponga a 0
+				frenado = this.getVelocidad();
+				// velocidad actual menos el frenado
+				this.setVelocidad(this.getVelocidad() - frenado);
+			}
 		} else {
-			System.out.println("Ya no se puede frenar más");
+			System.out.println("No se puede frenar un coche que no está en marcha");
 		}
-		*/
-		
-		this.setVelocidad(this.getVelocidad() - frenado);
+
 		// this.velocidad = this.velocidad - frenado;
+	}
+
+	//sin argumento porque invoco desde el objeto
+	public void precioCombustible() {
+
+		if (this.getTipoCombustible().equalsIgnoreCase("Gasolina")) {
+			//lo obtengo desde la clase y no desde un objeto porque son atributos estáticos
+			System.out.println("Precio gasolina: " + Automovil.getPrecioGasolina() + "€/litro");
+		} else {
+			System.out.println("Precio gasoil: " + Automovil.getPrecioGasoil() + "€/litro");
+		}
+	}
+	
+	//Metodo que permite cambiar el precio del combustible
+	public void cambiarCombustible() {
+		Scanner sc = new Scanner(System.in);
+		double nuevoPrecio;
+		String tipoCombustible = this.getTipoCombustible();
+		
+		System.out.println("Dime el nuevo precio para " + tipoCombustible);
+		nuevoPrecio = sc.nextDouble();
+		
+		if(tipoCombustible.equalsIgnoreCase("Gasolina")) {
+			Automovil.getPrecioGasolina();
+		} else {
+			Automovil.getPrecioGasoil();
+		}
 	}
 
 	// Método que pinta un coche del color que le indicamos
@@ -230,34 +262,34 @@ public class Automovil {
 		String tipoCombustible = sc.next();
 
 		return nuevoAutomovil = new Automovil(matricula, marca, color, nAnyos, velocidad, tipoCombustible);
-		
-		
+
 		/*
 		 * OTRA OPCIÓN
 		 * 
 		 * Automovil nuevoAutomovil = new Automovil();
 		 * 
-		 * System.out.println("Matricula: ");
-		 * nuevoAutomovil.setMatricula(sc.next());
+		 * System.out.println("Matricula: "); nuevoAutomovil.setMatricula(sc.next());
 		 */
-		
-	}
-	
-	
-	public static boolean existeAutomovil(Automovil miAutomovil) {
-		boolean existe = false;
-		if (miAutomovil != null) existe = true;
-		else System.out.println("Debes crear primero un automovil");
-		return existe;
+
 	}
 
+	public static boolean existeAutomovil(Automovil miAutomovil) {
+		boolean existe = false;
+		if (miAutomovil != null)
+			existe = true;
+		else
+			System.out.println("Debes crear primero un automovil");
+		return existe;
+	}
+	
+	/*
 	// métodos que nos permite asignar un nuevo valor a la gasolina
 	public static void nuevoPrecioGasolina(double precioGasolina) {
 		setPrecioGasolina(precioGasolina);
 	}
 
 	public static void nuevoPrecioGasoil(double precioGasoil) {
-		setPrecioGasolina(precioGasolina);
+		setPrecioGasolina(precioGasoil);
 	}
-
+	*/
 }

@@ -16,7 +16,8 @@ public class InterfazUsuario {
 		System.out.println("6. Parar");
 		System.out.println("7. Mostrar precio Combustible");
 		System.out.println("8. Modificar precio Combustible");
-		System.out.println("9. Salir");
+		System.out.println("9. Mostrar consumo del coche");
+		System.out.println("10. Salir");
 	}
 
 	public static void esperaIntro(Scanner sc) {

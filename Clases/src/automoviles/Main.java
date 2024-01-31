@@ -72,12 +72,22 @@ public class Main {
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 6: //Parar
+				//Entendemos parar como poner la velocidad actual al a 0
+				if(Automovil.existeAutomovil(miAutomovil)) {
+					miAutomovil.frenar(miAutomovil.getVelocidad());
+				}
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 7: //Mostrar precio Combustible
+				if(Automovil.existeAutomovil(miAutomovil)) {
+					miAutomovil.precioCombustible();
+				}
 				InterfazUsuario.esperaIntro(sc);
 				break;
-			case 8: //Modificar precio Combustibl
+			case 8: //Modificar precio Combustible
+				if(Automovil.existeAutomovil(miAutomovil)) {
+					miAutomovil.cambiarCombustible();
+				}
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 9: //Calcular consumo del coche
