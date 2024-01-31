@@ -177,9 +177,17 @@ public class Automovil {
 	// Método que frena un automóvil
 	// un número determinado de km/h que le indicamos como argumento
 	public void frenar(double frenado) {
-
+		
+		/*
+		if(this.getVelocidad() > 0) {
+			//velocidad actual menos el frenado
+			
+		} else {
+			System.out.println("Ya no se puede frenar más");
+		}
+		*/
+		
 		this.setVelocidad(this.getVelocidad() - frenado);
-
 		// this.velocidad = this.velocidad - frenado;
 	}
 

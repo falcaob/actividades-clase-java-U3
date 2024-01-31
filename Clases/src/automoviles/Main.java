@@ -57,11 +57,18 @@ public class Main {
 					}else {
 						miAutomovil.acelerar(aceleracion);
 					}
-					miAutomovil.acelerar(opcion);
 				} 
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 5: //Frenar
+				if(Automovil.existeAutomovil(miAutomovil)) {
+					double frenado;
+					
+					System.out.println("¿Cuánto quieres frenar?");
+					frenado = sc.nextDouble();
+					miAutomovil.frenar(frenado);
+				}
+				
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 6: //Parar
