@@ -222,6 +222,31 @@ public class Automovil {
 			Automovil.getPrecioGasoil();
 		}
 	}
+	
+	//Método para calcular el consumo € por cada 100km del coche
+	//optamos por el método que nos devuelva valor double correspondiente al consumo
+	public double calcularConsumoCoche() {
+		double consumoEnEuros = 0;
+		double precioLitroCombustible;
+		String tipoCombustible = this.getTipoCombustible();
+		
+		//vamos a pedirle al usuario que nos de información sobre el consumo del coche por cada 100km
+		Scanner sc = new Scanner(System.in);
+		System.out.println("¿Cuál es el consumo en litros por cada 100km?");
+		double litrosCada100 = sc.nextDouble();
+		
+		//ahora vamos a estraer el dato precio/litro del combustible que usa
+		if (getTipoCombustible().equalsIgnoreCase("Gasolina")) {
+			precioLitroCombustible = Automovil.getPrecioGasolina();
+		} else {
+			precioLitroCombustible = Automovil.getPrecioGasoil();
+		}
+		
+		//Calculo el consumo
+		consumoEnEuros = litrosCada100 * precioLitroCombustible;
+		
+		return consumoEnEuros;
+	}
 
 	// Método que pinta un coche del color que le indicamos
 	public void pintarCoche(String color) {

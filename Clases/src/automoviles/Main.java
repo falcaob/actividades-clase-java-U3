@@ -90,7 +90,11 @@ public class Main {
 				}
 				InterfazUsuario.esperaIntro(sc);
 				break;
-			case 9: //Calcular consumo del coche
+			case 9: //Calcular consumo del coche por cada 100km
+				if(Automovil.existeAutomovil(miAutomovil)) {
+					//necesito imprimir el valor que devuelve el metodo
+					System.out.println("Este coche gasta cada 100km un total de " + miAutomovil.calcularConsumoCoche() + "€");
+				}
 				InterfazUsuario.esperaIntro(sc);
 				break;
 			case 10: //Salir
